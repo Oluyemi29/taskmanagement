@@ -1,14 +1,14 @@
 import { addToast, Button, Image } from "@heroui/react";
 import { FiLogOut } from "react-icons/fi";
 import { userAuthStore } from "../store/authStore";
-import { useNavigate } from "react-router-dom";
+import { Navigate } from "react-router-dom";
 import { useState } from "react";
 
 const HeaderComponent = () => {
   const { LogOut, userData } = userAuthStore();
 
   const userId = userData?.id;
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
   const [loading, setLoading] = useState(false);
 
   // extracting space if included in the name
@@ -31,7 +31,13 @@ const HeaderComponent = () => {
       }
       const response = await LogOut(userId);
       if (response) {
-        return navigate("/login");
+        addToast({
+          title: "Done",
+          description: "logout is done",
+          color: "success",
+          timeout: 5000,
+        });
+        return <Navigate to={"/login"}/>;
       }
     } catch (error) {
       console.log(error);
