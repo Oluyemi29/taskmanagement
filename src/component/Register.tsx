@@ -31,7 +31,7 @@ const RegisterComponent = () => {
       const { email, name, password } = formData;
       const response = await Register(email, name, password);
       if (response) {
-        return navigate("/register");
+        return navigate("/login");
       }
     } catch (error) {
       console.log(error);
