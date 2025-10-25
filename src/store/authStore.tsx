@@ -169,8 +169,7 @@ export const userAuthStore = create<userAuthStoreProps>((set) => ({
     }
   },
 
-
-  // marking the task as completed 
+  // marking the task as completed
   CompletedTask: async (userId, id) => {
     const API = import.meta.env.VITE_BackendAPI as string;
     const request = await fetch(`${API}/completetask`, {
@@ -267,6 +266,15 @@ export const userAuthStore = create<userAuthStoreProps>((set) => ({
     });
     const response = await request.json();
     if (response.success) {
+      set((prevData) => {
+        return {
+          ...prevData,
+          isActive: false,
+          isCheckingActive: false,
+          userData : null,
+          userToken : null,
+        };
+      });
       addToast({
         title: "Done",
         description: response.message,
