@@ -31,7 +31,7 @@ const HeaderComponent = () => {
       }
       const response = await LogOut(userId);
       if (response) {
-        navigate("/login");
+        return navigate("/login");
       }
     } catch (error) {
       console.log(error);
@@ -44,7 +44,10 @@ const HeaderComponent = () => {
       <div className="flex flex-col items-center justify-start">
         <div className="w-8 h-8 rounded-full">
           <Image
-            src={userData?.image || "https://i.pinimg.com/736x/8b/16/7a/8b167af653c2399dd93b952a48740620.jpg"}
+            src={
+              userData?.image ||
+              "https://i.pinimg.com/736x/8b/16/7a/8b167af653c2399dd93b952a48740620.jpg"
+            }
             alt="user"
             width={"100%"}
             className="rounded-full border-2 border-white"
